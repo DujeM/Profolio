@@ -1,0 +1,7 @@
+{
+  "name": "Profolio",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
