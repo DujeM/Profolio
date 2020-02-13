@@ -2,3 +2,11 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

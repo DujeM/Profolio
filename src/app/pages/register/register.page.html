@@ -1,0 +1,19 @@
+<ion-content class="ion-padding">
+  <form class="col">
+    <p class="title">Create an account</p>
+    <ion-item class="input-wrapper">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="example@email.com" [(ngModel)]="email" name="email" required></ion-input>
+    </ion-item>  
+    <ion-item class="input-wrapper">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" placeholder="your secret password" [(ngModel)]="password" name="password" required></ion-input>
+    </ion-item>  
+    <ion-item class="input-wrapper">
+      <ion-label position="floating">Confirm password</ion-label>
+      <ion-input type="password" placeholder="your secret password again" [(ngModel)]="cpassword" name="password" required></ion-input>
+    </ion-item>  
+    <p class="subtitle">You'll set up your detailed profolio later in the app!</p>
+    <ion-button class="input-wrapper" expand="full" (click)="register()">Sign up</ion-button>
+  </form>
+</ion-content>

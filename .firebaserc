@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "profolio-b2f83": {
+      "hosting": {
+        "app": [
+          "profolio-b2f83"
+        ]
+      }
+    }
+  }
+}
