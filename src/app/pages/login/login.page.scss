@@ -1,0 +1,19 @@
+.col { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-wrapper {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 30px;
+    color:rgb(56, 128, 255);
+}
+
+.reg-link {
+    color:rgb(56, 128, 255);
+}
