@@ -17,6 +17,14 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'profolio',
+    loadChildren: () => import('./pages/add-edit-profolio/add-edit-profolio.module').then( m => m.AddEditProfolioPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   }
 ];
 @NgModule({

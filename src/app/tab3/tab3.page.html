@@ -3,7 +3,44 @@
     <ion-title>
       Profolio
     </ion-title>
+    <ion-icon class="icon" name="settings" slot="end" routerLink="/settings"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content class="ion-padding">
+  <!-- <ion-toolbar>
+  <ion-segment mode="ios" scrollable value="profolio" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="profolio">
+      <ion-label>Profolio</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="projects">
+      <ion-label>Projects</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>-->
+
+<div class="col">
+  <div class="input-wrapper row">
+    <ion-avatar class="img-wrapper">
+      <img src="../../assets/avatar.png">
+    </ion-avatar>
+  </div>
+  <p class="title">{{ profolio.name }}</p>
+  <p class="title">{{ profolio.jobTitle }}</p>
+   
+  <div class="input-wrapper col-start">
+    <span class="subtitle"  position="floating">About me</span>
+    <span>{{ profolio.description }}</span>
+  </div>
+  <div class="input-wrapper col-start">
+    <span class="subtitle"  position="floating">Useful links</span>
+    <div class="space-between w-100" *ngFor="let link of profolio.links">
+      <a href="{{link}}" target="_blank">{{ link }}</a>
+    </div>  
+  </div>  
+  <div class="input-wrapper col-start">
+    <span class="subtitle"  position="floating">Location</span>
+    <span>{{ profolio.country }}, {{ profolio.city }}</span>
+  </div>  
+</div>
+</ion-content>

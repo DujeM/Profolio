@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 interface User {
     email: string,
@@ -7,15 +8,25 @@ interface User {
 
 @Injectable()
 export class UserService {
-    private user: User;
-
-    constructor() {}
+    public user: User;
+    public uid: string;
+    constructor(
+        private storage: Storage
+    ) {}
 
     setUser(user: User) {
         this.user = user
+        this.storage.set('uid', this.user.uid)
+    }
+
+    async getUIDFromStorage() {
+        await this.storage.get('uid').then((val) => {
+            this.uid = val;
+            return val
+        });
     }
 
     getUID() {
-        return this.user.uid;
+        return this.uid;
     }
 }
