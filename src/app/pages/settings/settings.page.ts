@@ -18,8 +18,11 @@ export class SettingsPage implements OnInit {
   }
 
   logout() {
-    this.storage.remove('uid');
-    this.router.navigate(['/login']);
+    this.storage.remove('uid').then(res => {
+      this.router.navigate(['/login']).then(res => {
+        window.location.reload()
+      });
+    });
   }
 
 }

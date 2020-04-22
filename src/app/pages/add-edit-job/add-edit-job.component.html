@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Job
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<form class="col" [formGroup]="jobForm">
+  <p class="title">{{ title }}</p>
+
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Company name</ion-label>
+    <ion-input type="text" placeholder="John Doe" formControlName="name" name="name" required></ion-input>
+  </ion-item>
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Job title</ion-label>
+    <ion-input type="text" placeholder="Frontend developer" formControlName="jobTitle" name="jobTitle" required></ion-input>
+  </ion-item>    
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Description</ion-label>
+    <ion-input type="text" placeholder="Tell us something about yourself" formControlName="description" name="description" required></ion-input>
+  </ion-item>
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Country</ion-label>
+    <ion-input type="text" placeholder="England" formControlName="country" name="Country" required></ion-input>
+  </ion-item>  
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">City</ion-label>
+    <ion-input type="text" placeholder="London" formControlName="city" name="city" required></ion-input>
+  </ion-item>
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Links</ion-label>
+    <div class="space-between w-100" *ngFor="let link of links">
+      <span>{{ link }}</span>
+      <ion-icon class="link-icon" color="primary" (click)="removeLink(link)" name="remove-circle-outline"></ion-icon>
+    </div>
+    <div class="row w-100">
+      <ion-input type="text" placeholder="www.yoursite.com" formControlName="links" name="links"></ion-input>
+      <ion-icon class="link-icon" color="primary" (click)="addNewLink()" name="add-circle-outline"></ion-icon>
+    </div>
+  </ion-item>    
+  <ion-button class="input-wrapper" type="submit" *ngIf="!isEdit" [disabled]="!jobForm.valid" expand="full" (click)="createJob()">Create</ion-button>
+  <ion-button class="input-wrapper" type="submit" *ngIf="isEdit" [disabled]="!jobForm.valid" expand="full" (click)="createJob()">Save</ion-button>
+</form>
+</ion-content>

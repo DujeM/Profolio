@@ -16,7 +16,9 @@ export class UserService {
 
     setUser(user: User) {
         this.user = user
-        this.storage.set('uid', this.user.uid)
+        this.storage.set('uid', this.user.uid).then(res => {
+            this.getUIDFromStorage();
+        });
     }
 
     async getUIDFromStorage() {

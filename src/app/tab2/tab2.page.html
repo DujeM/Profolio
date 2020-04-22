@@ -6,4 +6,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <div class="row">
+    <ion-item>
+      <ion-label position="floating">Search</ion-label>
+      <ion-input type="text" [(ngModel)]="searchText" name="search"></ion-input>
+    </ion-item>    
+    <ion-button (click)="searchCharacter(searchText)">Search</ion-button>
+  </div>
+
+  <ion-list *ngIf="character">
+    <ion-item>
+      <ion-label>{{character.character.name}}, {{character.character.realm.name}}</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let item of character.equipped_items" class="row">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.media.key.href"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{item.slot.name}}: {{item.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

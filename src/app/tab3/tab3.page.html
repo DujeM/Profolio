@@ -8,39 +8,96 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- <ion-toolbar>
-  <ion-segment mode="ios" scrollable value="profolio" (ionChange)="segmentChanged($event)">
+  <ion-segment class="segment-wrapper" scrollable value="profolio" (ionChange)="segmentChanged($event.detail.value)">
     <ion-segment-button value="profolio">
       <ion-label>Profolio</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="projects">
-      <ion-label>Projects</ion-label>
+    <ion-segment-button value="jobs">
+      <ion-label>Jobs</ion-label>
     </ion-segment-button>
   </ion-segment>
-</ion-toolbar>-->
+<ion-spinner name="crescent" color="primary" *ngIf="loading"></ion-spinner>
 
-<div class="col">
-  <div class="input-wrapper row">
-    <ion-avatar class="img-wrapper">
-      <img src="../../assets/avatar.png">
-    </ion-avatar>
+<div [ngSwitch]="selectedSegment">
+  <div *ngSwitchCase="'profolio'">
+    <div class="col" *ngIf="userHasProfolio && !loading">
+      <div class="input-wrapper row">
+        <ion-avatar class="img-wrapper">
+          <img src="../../assets/avatar.png">
+        </ion-avatar>
+      </div>
+      <p class="title">{{ profolio.name }}</p>
+       
+      <div class="input-wrapper col-start">
+        <span class="subtitle"  position="floating">Current position</span>
+        <span>{{ profolio.jobTitle }}</span>
+      </div>
+      <div class="input-wrapper col-start">
+        <span class="subtitle"  position="floating">About me</span>
+        <span>{{ profolio.description }}</span>
+      </div>
+      <div class="input-wrapper col-start">
+        <span class="subtitle"  position="floating">Useful links</span>
+        <div class="space-between w-100" *ngFor="let link of profolio.links">
+          <a href="{{link}}" target="_blank">{{ link }}</a>
+        </div>  
+      </div>  
+      <div class="input-wrapper col-start">
+        <span class="subtitle"  position="floating">Location</span>
+        <span>{{ profolio.country }}, {{ profolio.city }}</span>
+      </div>  
+    </div>
+    
+    
+    <ion-card class="col-center" *ngIf="!userHasProfolio && !loading">
+      <ion-card-header>
+        <ion-card-title>Start by creating your profolio!</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-card-subtitle>Profolio is esentialy your profile page but a portfolio at the same time, other users can access it and get to know you and your skills better, so make sure to create one as soon as possible!</ion-card-subtitle>
+        <ion-button shape="round" fill="outline" routerLink="/profolio">Create profolio</ion-button>
+      </ion-card-content>
+    </ion-card>
   </div>
-  <p class="title">{{ profolio.name }}</p>
-  <p class="title">{{ profolio.jobTitle }}</p>
-   
-  <div class="input-wrapper col-start">
-    <span class="subtitle"  position="floating">About me</span>
-    <span>{{ profolio.description }}</span>
+  <div *ngSwitchCase="'jobs'">
+    <div *ngIf="userHasCreatedJobs && !loading">
+      <ion-button shape="round" fill="outline" routerLink="/create-job">Create job</ion-button>
+      <p class="job-segment-subtitle">Job opportunities you created:</p>
+      <ion-card class="row-start" *ngFor="let job of createdJobs">
+        <div class="col-center w-90">
+          <ion-card-header>
+            <ion-card-title>{{job.name}}</ion-card-title>
+            <ion-card-subtitle>{{job.jobTitle}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="row-start">
+            <div class="row-start">
+              <ion-icon name="eye" class="job-segment-subtitle mr-10"></ion-icon>
+              <p class="mr-10">{{job.views}}</p>
+            </div>
+            <div class="row-start">
+              <ion-icon name="people" class="job-segment-subtitle mr-10"></ion-icon>            
+              <p class="mr-10">{{job.following}}</p>
+            </div>
+          </ion-card-content>
+        </div>
+        <div class="col-center">
+          <ion-icon name="create" class="icon-wrapper" [routerLink]="['/create-job', job.id]"></ion-icon>
+          <ion-icon name="trash" class="icon-wrapper" (click)="deleteJob(job.id)"></ion-icon>
+        </div>
+      </ion-card>
+    </div>
+    <ion-card class="col-center" *ngIf="!userHasCreatedJobs && !loading">
+      <ion-card-header>
+        <ion-card-title>Your jobs list is currently empty!</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-card-subtitle>Jobs segment will display all jobs you are currently following, or jobs you created. Start of by going to Explore tab and following some jobs, or create a job opportunity yourself by clicking the button below!</ion-card-subtitle>
+        <ion-button shape="round" fill="outline" routerLink="/create-job">Create job</ion-button>
+      </ion-card-content>
+    </ion-card>
   </div>
-  <div class="input-wrapper col-start">
-    <span class="subtitle"  position="floating">Useful links</span>
-    <div class="space-between w-100" *ngFor="let link of profolio.links">
-      <a href="{{link}}" target="_blank">{{ link }}</a>
-    </div>  
-  </div>  
-  <div class="input-wrapper col-start">
-    <span class="subtitle"  position="floating">Location</span>
-    <span>{{ profolio.country }}, {{ profolio.city }}</span>
-  </div>  
 </div>
+
 </ion-content>

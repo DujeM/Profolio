@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app'
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
   constructor(
     private auth: AngularFireAuth,
     private router: Router,
-    private user: UserService
+    private user: UserService,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -37,5 +39,4 @@ export class LoginPage implements OnInit {
       console.dir(error)
     }
   }
-
 }

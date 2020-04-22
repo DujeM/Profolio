@@ -20,7 +20,8 @@ export class ProfolioService {
     public toastController: ToastController
   ) { 
     this.currentUser = this.user.getUID();
-    this.profoliosCollection = this.db.collection('users').doc(this.currentUser).collection<Profolio>('profolios');
+    console.log(this.currentUser)
+    this.profoliosCollection = this.db.collection('profolios');
     this.profolios = this.profoliosCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -29,19 +30,19 @@ export class ProfolioService {
           return { id, ...data }
         })
       })
-    )
+    );
   }
 
   getProfolios() {
-    return this.profolios;
+    return this.profolios
   }
 
-  getProfolio(id) {
-    return this.profoliosCollection.doc<Profolio>(id).valueChanges();
+  getProfolio() {
+    return this.profoliosCollection.doc<Profolio>(this.currentUser).valueChanges();
   }
 
   updateProfolio(profolio: Profolio, id: string) {
-    return this.profoliosCollection.doc(id).update(profolio)
+    return this.profoliosCollection.doc(this.currentUser).update(profolio)
     .then(result => {
       this.presentToastWithOptions('Profolio updated successfully!', 'success')
     })
@@ -51,7 +52,7 @@ export class ProfolioService {
   }
 
   addProfolio(profolio: Profolio) {
-    this.profoliosCollection.add({...profolio})
+    this.profoliosCollection.doc(this.currentUser).set({...profolio})
     .then(result => {
       this.presentToastWithOptions('Profolio created successfully!', 'success')
     })
@@ -61,7 +62,7 @@ export class ProfolioService {
   }
 
   deleteProfolio(id) {
-    this.profoliosCollection.doc(id).delete();
+    this.profoliosCollection.doc(this.currentUser).delete();
   }
 
   async presentToastWithOptions(msg: string, type:string) {
