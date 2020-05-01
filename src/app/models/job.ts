@@ -7,7 +7,7 @@ export class Job {
     city: string;
     links: string[];
     views: number = 0;
-    following: number = 0;
+    following: string[];
     constructor(
         id: string, 
         name: string, 
@@ -17,7 +17,7 @@ export class Job {
         city: string, 
         links: string[], 
         views: number,
-        following: number
+        following: string[]
         ) {
         this.id = id;
         this.name = name;

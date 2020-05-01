@@ -52,7 +52,7 @@ export class AddEditJobComponent {
 
   getUserJObs() {
     if (this.jobId) {
-      this.jobService.getUserCreatedJobById(this.jobId)
+      this.jobService.getJob(this.jobId)
       .subscribe(result => {
           this.jobForm = this.formBuilder.group({
             name: [result.name, Validators.required],
@@ -81,6 +81,8 @@ export class AddEditJobComponent {
   createJob() {
     this.job = this.jobForm.value;
     this.job.links = this.links;
+    this.job.following = [];
+    this.job.views = 0;
     if (this.isEdit) {  
       this.jobService.updateJob(this.job, this.jobId);
     } else {

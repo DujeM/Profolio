@@ -38,6 +38,14 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'create-job',
+        loadChildren: () => import('../pages/add-edit-job/add-edit-job.module').then( m => m.AddEditJobPageModule)
+      },
+      {
+        path: 'preview-job',
+        loadChildren: () => import('../pages/preview-job/preview-job.module').then( m => m.PreviewJobModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

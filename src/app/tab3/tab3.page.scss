@@ -70,6 +70,10 @@
     width: 90%;
 }
 
+#job-card:focus {
+    outline: none;
+}
+
 .space-between {
     display: flex;
     justify-content: space-between;
