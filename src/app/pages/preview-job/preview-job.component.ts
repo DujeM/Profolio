@@ -20,6 +20,7 @@ export class PreviewJobComponent implements OnInit {
   isEdit = true;
   jobId: string;
   currentUserIsFollowingThisJob: boolean = false;
+
   constructor(
     private camera: Camera,
     private file: File,
@@ -32,6 +33,7 @@ export class PreviewJobComponent implements OnInit {
   ) {
     this.currentUser = this.user.getUID();
     this.jobId = route.snapshot.params.id;
+    this.jobService.incrementJobViews(this.jobId);
   }
 
   ngOnInit() {
@@ -40,16 +42,16 @@ export class PreviewJobComponent implements OnInit {
 
   getUserJObs() {
     this.jobService.getJob(this.jobId)
-    .subscribe(result => {
-      this.job = result;
-      if (this.job) {
-        this.job.following.forEach(id => {
-          if (this.currentUser == id) {
-            this.currentUserIsFollowingThisJob = true;
-          }
+      .subscribe(result => {
+        this.job = result;
+        if (this.job) {
+          this.job.following.forEach(id => {
+            if (this.currentUser == id) {
+              this.currentUserIsFollowingThisJob = true;
+            }
+          });
+        }
       });
-      }
-    });
   }
 
   followAJob() {

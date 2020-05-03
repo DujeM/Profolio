@@ -30,24 +30,24 @@
       </div>
       <p class="title">{{ profolio.name }}</p>
        
-      <div class="input-wrapper col-start">
-        <span class="subtitle"  position="floating">Current position</span>
-        <span>{{ profolio.jobTitle }}</span>
-      </div>
-      <div class="input-wrapper col-start">
-        <span class="subtitle"  position="floating">About me</span>
-        <span>{{ profolio.description }}</span>
-      </div>
-      <div class="input-wrapper col-start">
-        <span class="subtitle"  position="floating">Useful links</span>
+      <ion-item>
+        <ion-label class="subtitle"  position="floating">Current position</ion-label>
+        <p>{{ profolio.jobTitle }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label class="subtitle"  position="floating">About me</ion-label>
+        <p>{{ profolio.description }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label class="subtitle"  position="floating">Useful links</ion-label>
         <div class="space-between w-100" *ngFor="let link of profolio.links">
           <a href="{{link}}" target="_blank">{{ link }}</a>
         </div>  
-      </div>  
-      <div class="input-wrapper col-start">
-        <span class="subtitle"  position="floating">Location</span>
-        <span>{{ profolio.country }}, {{ profolio.city }}</span>
-      </div>  
+      </ion-item>  
+      <ion-item>
+        <ion-label class="subtitle"  position="floating">Location</ion-label>
+        <p>{{ profolio.country }}, {{ profolio.city }}</p>
+      </ion-item>  
     </div>
     
     

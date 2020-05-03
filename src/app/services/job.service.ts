@@ -44,13 +44,16 @@ export class JobService {
   }
 
   updateJob(job: Job, id: string) {
-    return this.jobsCollection.doc(id).update(job)
-    .then(result => {
-        this.presentToastWithOptions('Job updated successfully!', 'success')
+    return this.jobsCollection.doc(id).update(job);
+  }
+
+  incrementJobViews(id) {
+    let job: any;
+    this.jobsCollection.doc<Job>(id).get().subscribe(res => {
+      job = res.data();
+      job.views += 1;
+      this.updateJob(job, id);
     })
-    .catch(error => {
-      this.presentToastWithOptions('Something went wrong, please try again!', 'error')
-    });
   }
 
   addJob(job: Job) {

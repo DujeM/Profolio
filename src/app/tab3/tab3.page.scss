@@ -2,7 +2,6 @@
 .col { 
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .row-start {
@@ -21,15 +20,15 @@
 }
 
 .title {
+    font-size: 25px;
+    text-align: center;
     margin: 0px;
-    font-size: 30px;
-    color:rgb(56, 128, 255);
 }
 
 .subtitle {
-    font-size: 20px;
-    color:rgb(56, 128, 255);
-    margin: 15px 0 15px 0;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
 .job-segment-subtitle {
