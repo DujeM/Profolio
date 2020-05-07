@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
 
 interface User {
     email: string,
@@ -11,7 +12,8 @@ export class UserService {
     public user: User;
     public uid: string;
     constructor(
-        private storage: Storage
+        private storage: Storage,
+        private http: HttpClient,
     ) {}
 
     setUser(user: User) {
@@ -30,5 +32,13 @@ export class UserService {
 
     getUID() {
         return this.uid;
+    }
+
+    getAllCountries() {
+        return this.http.get('https://restcountries.eu/rest/v2/all');
+    }
+
+    getAllCurrencies() {
+        return this.http.get('https://openexchangerates.org/api/currencies.json');
     }
 }

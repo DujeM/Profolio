@@ -23,6 +23,9 @@ export class AddEditJobComponent {
   title = 'Edit your job';
   isEdit = true;
   jobId: string;
+  currencies: any;
+  countries: any;
+  selectedCountry: any;
 
   constructor(
     private camera: Camera,
@@ -41,13 +44,31 @@ export class AddEditJobComponent {
       description: new FormControl(),
       country: new FormControl(),
       city: new FormControl(),
-      links: new FormControl()
+      links: new FormControl(),
+      salary: new FormControl(),
+      currency: new FormControl(),
+      type: new FormControl(),
+      isRemote: new FormControl()
    });
    this.jobId = route.snapshot.params.id;
   }
 
   ionViewWillEnter() {
     this.getUserJObs();
+    this.getAllCountries();
+    this.getAllCurrencies();
+  }
+
+  getAllCountries() {
+    this.user.getAllCountries().subscribe(result => {
+      this.countries = result;
+    });
+  }
+
+  getAllCurrencies() {
+    this.user.getAllCurrencies().subscribe(result => {
+      this.currencies = result;
+    });
   }
 
   getUserJObs() {
@@ -60,7 +81,11 @@ export class AddEditJobComponent {
             description: [result.description, Validators.required],
             country: [result.country, Validators.required],
             city: [result.city, Validators.required],
-            links: ['', Validators.nullValidator]
+            links: ['', Validators.nullValidator],
+            salary: [result.salary, Validators.required],
+            type: [result.type, Validators.required],
+            currency: [result.currency, Validators.required],
+            isRemote: [result.isRemote, Validators.required]
           });
           this.links = result.links;
       }); 
@@ -73,14 +98,29 @@ export class AddEditJobComponent {
         description: ['', Validators.required],
         country: ['', Validators.required],
         city: ['', Validators.required],
-        links: ['', Validators.nullValidator]
+        salary: ['', Validators.required],
+        currency: ['', Validators.required],
+        type: ['', Validators.required],
+        links: ['', Validators.nullValidator],
+        isRemote: [false, Validators.required]
       });
     }
+  }
+
+  selectCountry(event: any) {
+    this.selectedCountry = event;
+    this.selectCurrency(this.selectedCountry.currencies[0].code);
+  }
+
+  selectCurrency(event: any) {
+    this.jobForm.controls['currency'].setValue(event);
+    console.log(this.jobForm)
   }
 
   createJob() {
     this.job = this.jobForm.value;
     this.job.links = this.links;
+    this.job.country = this.selectedCountry.name;
     this.job.following = [];
     this.job.views = 0;
     if (this.isEdit) {  

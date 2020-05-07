@@ -6,8 +6,12 @@ export class Job {
     country: string;
     city: string;
     links: string[];
+    salary: string;
+    currency: string;
+    type: string;
     views: number = 0;
     following: string[];
+    isRemote: boolean;
     constructor(
         id: string, 
         name: string, 
@@ -15,9 +19,13 @@ export class Job {
         description: string, 
         country: string, 
         city: string, 
-        links: string[], 
+        links: string[],
+        salary: string,
+        currency: string, 
+        type: string,
         views: number,
-        following: string[]
+        following: string[],
+        isRemote: boolean
         ) {
         this.id = id;
         this.name = name;
@@ -26,7 +34,11 @@ export class Job {
         this.country = country;
         this.city = city;
         this.links = links;
+        this.salary = salary;
+        this.currency = currency;
+        this.type = type;
         this.views = views;
         this.following = following;
+        this.isRemote = isRemote;
     }
 }

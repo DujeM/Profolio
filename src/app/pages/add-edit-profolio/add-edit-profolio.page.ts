@@ -23,6 +23,7 @@ export class AddEditProfolioPage {
   title = 'Edit your profolio';
   isEdit = true;
   profolioId: string;
+  countries: any;
 
   constructor(
     private camera: Camera,
@@ -46,22 +47,29 @@ export class AddEditProfolioPage {
 
   ionViewWillEnter() {
     this.getUserProfolio();
+    this.getAllCountries();
+  }
+
+  getAllCountries() {
+    this.user.getAllCountries().subscribe(result => {
+      this.countries = result;
+    });
   }
 
   getUserProfolio() {
-    this.profolioService.getProfolios()
+    this.profolioService.getProfolio()
     .subscribe(result => {
-      if (result[0]) {
+      if (result) {
         this.profolioForm = this.formBuilder.group({
-          name: [result[0].name, Validators.required],
-          jobTitle: [result[0].jobTitle, Validators.required],
-          description: [result[0].description, Validators.required],
-          country: [result[0].country, Validators.required],
-          city: [result[0].city, Validators.required],
+          name: [result.name, Validators.required],
+          jobTitle: [result.jobTitle, Validators.required],
+          description: [result.description, Validators.required],
+          country: [result.country, Validators.required],
+          city: [result.city, Validators.required],
           links: ['', Validators.nullValidator]
         });
-        this.links = result[0].links;      
-        this.profolioId = result[0].id;
+        this.links = result.links;      
+        this.profolioId = result.id;
       } else {
         this.isEdit = false;
         this.title = 'Create your profolio';

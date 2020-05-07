@@ -7,44 +7,164 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    <ion-card class="col-center">
-      <ion-card-header>
-        <ion-card-title>Don't have a profolio?</ion-card-title>
-        <ion-card-subtitle>Click here to create one!</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        <ion-button class="input-wrapper" expand="full" routerLink="/tabs/tab3">Create profolio</ion-button>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="col-center">
-      <ion-card-header>
-        <ion-card-title>Browse all</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        <ion-button shape="round" fill="outline">See more</ion-button>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="col-center">
-      <ion-card-header>
-        <ion-card-title>Explore our favorites</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        <ion-button shape="round" fill="outline">See more</ion-button>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="col-center">
-      <ion-card-header>
-        <ion-card-title>Explore projects or profolios near you</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        <ion-button shape="round" fill="outline">See more</ion-button>
-      </ion-card-content>
-    </ion-card>
+  <div>
+    <div class="space-between">
+      <p class="title">Browse Profolios</p>
+      <ion-icon class="title" name="arrow-forward"></ion-icon>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <p class="title">New job opportunities</p>
+      <ion-icon class="title" name="arrow-forward"></ion-icon>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <p class="title">Popular job opprotunities</p>
+      <ion-icon class="title" name="arrow-forward"></ion-icon>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <p class="title">New blog posts</p>
+      <ion-icon class="title" name="arrow-forward"></ion-icon>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <p class="title">Popular blog posts</p>
+      <ion-icon class="title" name="arrow-forward"></ion-icon>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+      <ion-slide>
+        <ion-card class="w-100">
+          <ion-card-header>
+            <ion-card-title>Ime firme</ion-card-title>
+            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>      
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>

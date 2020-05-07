@@ -28,11 +28,33 @@
   </ion-item>
   <ion-item class="input-wrapper">
     <ion-label position="floating">Country</ion-label>
-    <ion-input type="text" placeholder="England" formControlName="country" name="Country" required></ion-input>
+    <ion-select formControlName="country" name="country" okText="Okay" cancelText="Dismiss" 
+    (ionChange)="selectCountry($event.target.value)">
+      <ion-select-option *ngFor="let c of countries" [value]="c">{{c.name}}</ion-select-option>
+    </ion-select>
   </ion-item>  
   <ion-item class="input-wrapper">
     <ion-label position="floating">City</ion-label>
     <ion-input type="text" placeholder="London" formControlName="city" name="city" required></ion-input>
+  </ion-item>
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Salary</ion-label>
+      <ion-input type="text" placeholder="Monthly" formControlName="salary" name="salary" required></ion-input>
+  </ion-item>
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Currency</ion-label>
+      <ion-select formControlName="currency" name="currency" okText="Okay" cancelText="Dismiss" 
+      (ionChange)="selectCurrency($event.target.value)">
+        <ion-select-option *ngFor="let c of currencies | keyvalue" [value]="c.key">{{c.key}}</ion-select-option>
+      </ion-select>    
+  </ion-item>
+  <ion-item class="input-wrapper">
+    <ion-label position="floating">Type</ion-label>
+      <ion-select formControlName="type" name="type" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="Full time">Full time</ion-select-option>
+        <ion-select-option value="Part time">Part time</ion-select-option>
+        <ion-select-option value="One time">One time</ion-select-option>
+      </ion-select>    
   </ion-item>
   <ion-item class="input-wrapper">
     <ion-label position="floating">Links</ion-label>
@@ -45,6 +67,10 @@
       <ion-icon class="link-icon" color="primary" (click)="addNewLink()" name="add-circle-outline"></ion-icon>
     </div>
   </ion-item>    
+  <ion-item class="input-wrapper">
+    <ion-label>Remote work available</ion-label>
+    <ion-checkbox slot="end" formControlName="isRemote" name="isRemote"></ion-checkbox>
+  </ion-item>
   <ion-button class="input-wrapper" type="submit" *ngIf="!isEdit" [disabled]="!jobForm.valid" expand="full" (click)="createJob()">Create</ion-button>
   <ion-button class="input-wrapper" type="submit" *ngIf="isEdit" [disabled]="!jobForm.valid" expand="full" (click)="createJob()">Save</ion-button>
 </form>

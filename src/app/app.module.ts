@@ -16,6 +16,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './services/user.service';
 import 'firebase/firestore';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
@@ -24,6 +26,7 @@ import { File } from '@ionic-native/file/ngx';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule, 
