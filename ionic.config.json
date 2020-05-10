@@ -1,7 +1,8 @@
 {
   "name": "Profolio",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

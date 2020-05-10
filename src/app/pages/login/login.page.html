@@ -1,5 +1,6 @@
 <ion-content class="ion-padding">
-  <form class="col">
+  <ion-spinner name="crescent" color="primary" *ngIf="loading"></ion-spinner>
+  <form class="col" *ngIf="!loading">
     <p class="title">Login</p>
     <ion-item class="input-wrapper">
       <ion-label position="floating">Email</ion-label>

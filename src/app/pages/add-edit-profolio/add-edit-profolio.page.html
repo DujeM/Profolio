@@ -14,7 +14,7 @@
 <form class="col" [formGroup]="profolioForm">
   <p class="title">{{ title }}</p>
   <div class="input-wrapper row">
-    <ion-avatar class="img-wrapper">
+    <ion-avatar class="img-wrapper" (click)="selectImage()">
       <img src="../../assets/avatar.png">
     </ion-avatar>
   </div>

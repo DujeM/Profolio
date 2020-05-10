@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-settings',
@@ -11,18 +12,17 @@ export class SettingsPage implements OnInit {
 
   constructor(
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private auth: AngularFireAuth
   ) { }
 
   ngOnInit() {
   }
 
   logout() {
-    this.storage.remove('uid').then(res => {
-      this.router.navigate(['/login']).then(res => {
-        window.location.reload()
-      });
-    });
+    this.auth.signOut().then(() => {
+        this.router.navigate(['/login']);
+    })
   }
 
 }

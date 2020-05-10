@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
-import { File } from '@ionic-native/file/ngx';
+import { File, FileEntry } from '@ionic-native/file/ngx';
 import { Profolio } from '../../models/profolio';
 import { ProfolioService } from '../../services/profolio.service';
 import { UserService } from '../../services/user.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-add-edit-profolio',
@@ -32,7 +33,8 @@ export class AddEditProfolioPage {
     private profolioService: ProfolioService,
     private user: UserService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private storage: AngularFireStorage
   ) {
     this.currentUser = this.user.getUID();
     this.profolioForm = new FormGroup({
@@ -57,7 +59,7 @@ export class AddEditProfolioPage {
   }
 
   getUserProfolio() {
-    this.profolioService.getProfolio()
+    this.profolioService.getProfolio(this.currentUser)
     .subscribe(result => {
       if (result) {
         this.profolioForm = this.formBuilder.group({
@@ -118,6 +120,7 @@ export class AddEditProfolioPage {
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
+      console.log(imageData)
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       // let base64Image = 'data:image/jpeg;base64,' + imageData;
@@ -148,6 +151,23 @@ export class AddEditProfolioPage {
       ]
     });
     await actionSheet.present();
+  }
+
+  async uploadFile(f: FileEntry) {
+    const path = f.nativeURL.substr(0, f.nativeURL.lastIndexOf('/') +1);
+    const buffer = await this.file.readAsArrayBuffer(path, f.name);
+    const type = this.getMimeType(f.name.split('.').pop());
+    const fileBlob = new Blob([buffer], type)
+
+    const uploadTask = this.storage.upload(`profolioPictures/${this.currentUser}`, fileBlob);
+
+  }
+
+  getMimeType(fileExt) {
+    if (fileExt == 'jpg') return { type: 'image/jpg' };
+    else if (fileExt == 'png') return { type: 'image/png' };
+    else if (fileExt == 'pdf') return { type: 'application/pdf'};
+    else if (fileExt == 'docx') return { type: 'application/octet-stream' };
   }
 }
 

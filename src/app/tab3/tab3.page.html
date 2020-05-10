@@ -67,7 +67,7 @@
       <p class="job-segment-subtitle" *ngIf="!loading">Following job opportunities</p>
       <div *ngIf="userHasFollowingJobs && !loading">
       <ion-card class="row-start" *ngFor="let job of followingJobs" >
-        <div id="job-card" class="col-center w-90" [routerLink]="['/preview-job', job.id]">
+        <div id="job-card" class="col-center w-90" [routerLink]="['/tabs/preview-job', job.id]">
           <ion-card-header>
             <ion-card-title>{{job.name}}</ion-card-title>
             <ion-card-subtitle>{{job.jobTitle}}</ion-card-subtitle>

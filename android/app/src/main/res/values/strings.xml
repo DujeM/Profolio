@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">profolio</string>
+    <string name="title_activity_main">profolio</string>
+    <string name="package_name">com.test.profolio</string>
+    <string name="custom_url_scheme">com.test.profolio</string>
+</resources>

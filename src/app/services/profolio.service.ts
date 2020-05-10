@@ -12,15 +12,12 @@ import { ToastController } from '@ionic/angular';
 export class ProfolioService {
   private profoliosCollection: AngularFirestoreCollection<Profolio>;
   private profolios: Observable<Profolio[]>;
-  currentUser: any;
 
   constructor(
     private db: AngularFirestore,
     private user: UserService,
     public toastController: ToastController
   ) { 
-    this.currentUser = this.user.getUID();
-    console.log(this.currentUser)
     this.profoliosCollection = this.db.collection('profolios');
     this.profolios = this.profoliosCollection.snapshotChanges().pipe(
       map(actions => {
@@ -37,12 +34,16 @@ export class ProfolioService {
     return this.profolios
   }
 
-  getProfolio() {
-    return this.profoliosCollection.doc<Profolio>(this.currentUser).valueChanges();
+  getProfoliosForExploreTab() {
+    return this.profoliosCollection.ref.limit(3).get();
+  }
+
+  getProfolio(uid: string) {
+    return this.profoliosCollection.doc<Profolio>(uid).valueChanges();
   }
 
   updateProfolio(profolio: Profolio, id: string) {
-    return this.profoliosCollection.doc(this.currentUser).update(profolio)
+    return this.profoliosCollection.doc(this.user.getUID()).update(profolio)
     .then(result => {
       this.presentToastWithOptions('Profolio updated successfully!', 'success')
     })
@@ -52,7 +53,7 @@ export class ProfolioService {
   }
 
   addProfolio(profolio: Profolio) {
-    this.profoliosCollection.doc(this.currentUser).set({...profolio})
+    this.profoliosCollection.doc(this.user.getUID()).set({...profolio})
     .then(result => {
       this.presentToastWithOptions('Profolio created successfully!', 'success')
     })
@@ -62,7 +63,7 @@ export class ProfolioService {
   }
 
   deleteProfolio(id) {
-    this.profoliosCollection.doc(this.currentUser).delete();
+    this.profoliosCollection.doc(this.user.getUID()).delete();
   }
 
   async presentToastWithOptions(msg: string, type:string) {

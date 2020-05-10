@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
 
   email: string;
   password: string;
+  loading: boolean = true;
   constructor(
     private auth: AngularFireAuth,
     private router: Router,
@@ -22,6 +23,15 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.auth.currentUser.then(user => {
+      if (user) {
+        this.user.getUserUID().then(() => {
+          this.router.navigateByUrl('tabs')
+        });  
+      } else {
+        this.loading = false;
+      }
+    })
   }
 
   async login() {
@@ -29,11 +39,9 @@ export class LoginPage implements OnInit {
     try {
       const res = await this.auth.signInWithEmailAndPassword(email, password)
       if (res.user) {
-        this.user.setUser({
-          email,
-          uid: res.user.uid
+        this.user.getUserUID().then(() => {
+          this.router.navigateByUrl('tabs')
         });
-        this.router.navigateByUrl('tabs')
       }
     } catch (error) {
       console.dir(error)

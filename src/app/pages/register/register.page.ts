@@ -39,10 +39,6 @@ export class RegisterPage implements OnInit {
         email
       });
 
-      this.user.setUser({
-        email,
-        uid: res.user.uid
-      });
       console.log("Success account registered!")
       this.router.navigateByUrl('tabs')
     } catch (error) {

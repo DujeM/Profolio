@@ -5,37 +5,88 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" *ngIf="(newJobs.length < 3)  && (popularJobs.length < 3)">
+  <div>
+    <div class="space-between">
+      <ion-skeleton-text class="title" animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <ion-skeleton-text class="title" animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <ion-skeleton-text class="title" animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <ion-skeleton-text class="title" animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div>
+    <div class="space-between">
+      <ion-skeleton-text class="title" animated style="width: 60%"></ion-skeleton-text>
+    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-skeleton-text animated style="width: 190px; height:120px;"></ion-skeleton-text>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>
+<ion-content class="ion-padding" *ngIf="(newJobs.length == 3)  && (popularJobs.length == 3)">
   <div>
     <div class="space-between">
       <p class="title">Browse Profolios</p>
       <ion-icon class="title" name="arrow-forward"></ion-icon>
     </div>
     <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide>
+      <ion-slide *ngFor="let profolio of profolios">
         <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+          <ion-card-header class="card-info">
+            <ion-card-title>{{ profolio.name }}</ion-card-title>
+            <ion-card-subtitle>{{ profolio.jobTitle }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ profolio.country }}, {{ profolio.city }}</ion-card-subtitle>
           </ion-card-header>
         </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>      
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>      
       </ion-slide>
     </ion-slides>
   </div>
@@ -45,29 +96,15 @@
       <ion-icon class="title" name="arrow-forward"></ion-icon>
     </div>
     <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+      <ion-slide *ngFor="let newJob of newJobs">
+        <ion-card class="w-100" [routerLink]="['/tabs/preview-job', newJob.id]">
+          <ion-card-header class="card-info">
+            <ion-card-title>{{ newJob.name }}</ion-card-title>
+            <ion-card-subtitle>{{ newJob.jobTitle}}</ion-card-subtitle>
+            <ion-card-subtitle>{{ newJob.salary }} {{ newJob.currency }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ newJob.country }}, {{ newJob.city }}</ion-card-subtitle>
           </ion-card-header>
         </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>      
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>      
       </ion-slide>
     </ion-slides>
   </div>
@@ -77,29 +114,15 @@
       <ion-icon class="title" name="arrow-forward"></ion-icon>
     </div>
     <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
+      <ion-slide *ngFor="let popularJob of popularJobs">
+        <ion-card class="w-100" [routerLink]="['/tabs/preview-job', popularJob.id]">
+          <ion-card-header class="card-info">
+            <ion-card-title>{{ popularJob.name }}</ion-card-title>
+            <ion-card-subtitle>{{ popularJob.jobTitle}}</ion-card-subtitle>
+            <ion-card-subtitle>{{ popularJob.salary }} {{ popularJob.currency }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ popularJob.country }}, {{ popularJob.city }}</ion-card-subtitle>
           </ion-card-header>
         </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>      
-      </ion-slide>
-      <ion-slide>
-        <ion-card class="w-100">
-          <ion-card-header>
-            <ion-card-title>Ime firme</ion-card-title>
-            <ion-card-subtitle>Pozicija u firmi</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>      
       </ion-slide>
     </ion-slides>
   </div>
@@ -167,4 +190,5 @@
       </ion-slide>
     </ion-slides>
   </div>
+  
 </ion-content>

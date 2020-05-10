@@ -41,7 +41,6 @@ export class Tab3Page {
     private user: UserService,
     private formBuilder: FormBuilder,
   ) {
-    this.currentUser = this.user.getUID();
    }
 
   ionViewWillEnter() {
@@ -94,7 +93,7 @@ export class Tab3Page {
     },500);}
 
   getUserProfolio() {
-    this.profolioService.getProfolio()
+    this.profolioService.getProfolio(this.user.getUID())
     .subscribe(result => {
       if (result) {
         this.profolio = result;

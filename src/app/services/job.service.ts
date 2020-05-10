@@ -14,28 +14,30 @@ export class JobService {
   private usersCreatedJobsCollection: AngularFirestoreCollection;
   private usersFollowedJobsCollection: AngularFirestoreCollection;
   private jobs: Observable<Job[]>;
-  currentUser: any;
 
   constructor(
     private db: AngularFirestore,
     private user: UserService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private auth: AngularFireAuth
   ) { 
-    this.currentUser = this.user.getUID();
     this.jobsCollection = this.db.collection('jobs');
-    this.usersCreatedJobsCollection = this.db.collection('users').doc(this.currentUser).collection('created_jobs');
-    this.usersFollowedJobsCollection = this.db.collection('users').doc(this.currentUser).collection('following_jobs');
+    this.usersCreatedJobsCollection = this.db.collection('users').doc(this.user.getUID()).collection('created_jobs');
+    this.usersFollowedJobsCollection = this.db.collection('users').doc(this.user.getUID()).collection('following_jobs');
   }
 
   getUserCreatedJobs() {
+    this.usersCreatedJobsCollection = this.db.collection('users').doc(this.user.getUID()).collection('created_jobs');
     return this.usersCreatedJobsCollection.valueChanges();
   }
 
   getUserFollowingJobs() {
+    this.usersFollowedJobsCollection = this.db.collection('users').doc(this.user.getUID()).collection('following_jobs');
     return this.usersFollowedJobsCollection.valueChanges();
   }
 
   getUserCreatedJobById(id) {
+    this.usersCreatedJobsCollection = this.db.collection('users').doc(this.user.getUID()).collection('created_jobs');
     return this.usersCreatedJobsCollection.doc<Job>(id).valueChanges();
   }
 
@@ -45,6 +47,14 @@ export class JobService {
 
   updateJob(job: Job, id: string) {
     return this.jobsCollection.doc(id).update(job);
+  }
+
+  getNewJobsForExploreTab() {
+    return this.jobsCollection.ref.orderBy("created_at", 'desc').limit(3).get();
+  }
+
+  getPopularJobsForExploreTab() {
+    return this.jobsCollection.ref.orderBy("views", 'desc').limit(3).get();
   }
 
   incrementJobViews(id) {
@@ -81,7 +91,7 @@ export class JobService {
   }
 
   followAJob(id) {
-    return this.jobsCollection.doc(id).update({ following: [this.currentUser] }).then(res => {
+    return this.jobsCollection.doc(id).update({ following: [this.user.getUID()] }).then(res => {
       return this.usersFollowedJobsCollection.doc(id).set({id});
     });
   }
